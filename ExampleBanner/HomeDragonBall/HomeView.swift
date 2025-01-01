@@ -12,10 +12,11 @@ class DragonBallView: UIViewController {
     
     var presenter: DragonBallPresenter?
     let cellIdentifi = "cell"
-    
+    var charactersCoordinator: CharactersCoordinator?
+     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        let view2 = CharactersView()
-        self.navigationController!.pushViewController(view2, animated: true)
+        charactersCoordinator = CharactersCoordinator(navigationController: self.navigationController)
+        charactersCoordinator?.start()
     }
     
     lazy var tableHome: UITableView = {

@@ -10,16 +10,24 @@ import UIKit
 
 class DragonBallRouter {
     
-    func startDrgonBall(windows: UIWindow?){
-        let view = DragonBallView()
-        let interactor = DragonBallInteractor()
-        let presenter = DragonBallPresenter(dragonBallInteractor: interactor)
+    let view: DragonBallView
+    let interactor: DragonBallInteractor
+    let presenter: DragonBallPresenter
+
+    init() {
+        self.view = DragonBallView()
+        self.interactor = DragonBallInteractor()
+        self.presenter = DragonBallPresenter(dragonBallInteractor: interactor)
         presenter.ui = view
         view.presenter = presenter
-        
-        windows?.rootViewController = view
-        windows?.makeKeyAndVisible()
-        
     }
 
+    func startDrgonBall(windows: UIWindow?){
+        windows?.rootViewController = view
+        windows?.makeKeyAndVisible()
+    }
+
+    func goToCharacterDetails() {
+        
+    }
 }

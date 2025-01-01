@@ -12,6 +12,7 @@ class CharactersView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
+        print("CharactersViewCharactersViewCharactersViewCharactersViewCharactersView")
     }
     
 }
