@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		658879E12D26089A000EA056 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658879E02D26087D000EA056 /* MainRouter.swift */; };
 		65DBA1EA2B81D851008393FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA1E92B81D851008393FE /* HomeView.swift */; };
 		65DBA1EC2B81D85E008393FE /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA1EB2B81D85E008393FE /* HomeInteractor.swift */; };
 		65DBA1EE2B81D865008393FE /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DBA1ED2B81D865008393FE /* HomeRouter.swift */; };
@@ -29,6 +30,7 @@
 		03EAE95A6159FA3715423247 /* Pods-ExampleBanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleBanner.release.xcconfig"; path = "Target Support Files/Pods-ExampleBanner/Pods-ExampleBanner.release.xcconfig"; sourceTree = "<group>"; };
 		0B89D1AB3B62DF1CE5458C07 /* Pods_ExampleBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExampleBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47105AB2DA909DACC18ED599 /* Pods-ExampleBanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleBanner.debug.xcconfig"; path = "Target Support Files/Pods-ExampleBanner/Pods-ExampleBanner.debug.xcconfig"; sourceTree = "<group>"; };
+		658879E02D26087D000EA056 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		65DBA1E92B81D851008393FE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		65DBA1EB2B81D85E008393FE /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		65DBA1ED2B81D865008393FE /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		CD10C35A2B3C6AF80068484A /* ExampleBanner */ = {
 			isa = PBXGroup;
 			children = (
+				658879E02D26087D000EA056 /* MainRouter.swift */,
 				65DBA1F52B81D941008393FE /* CharactersDragonBall */,
 				65DBA1E82B81D833008393FE /* HomeDragonBall */,
 				CD10C35B2B3C6AF80068484A /* AppDelegate.swift */,
@@ -254,6 +257,7 @@
 				65DBA1F72B81D957008393FE /* CharactersView.swift in Sources */,
 				65DBA1F02B81D86C008393FE /* HomePresenter.swift in Sources */,
 				65DBA1EC2B81D85E008393FE /* HomeInteractor.swift in Sources */,
+				658879E12D26089A000EA056 /* MainRouter.swift in Sources */,
 				65DBA1FB2B81D975008393FE /* CharactersInteractor.swift in Sources */,
 				65DBA1F92B81D964008393FE /* CharactersPresenter.swift in Sources */,
 				CD10C35C2B3C6AF80068484A /* AppDelegate.swift in Sources */,

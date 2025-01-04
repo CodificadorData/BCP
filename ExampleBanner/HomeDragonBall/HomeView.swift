@@ -7,15 +7,17 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class DragonBallView: UIViewController {
     
     var presenter: DragonBallPresenter?
     let cellIdentifi = "cell"
-    
+
     @IBAction func buttonPressed(_ sender: UIButton) {
         let view2 = CharactersView()
-        self.navigationController!.pushViewController(view2, animated: true)
+        let dragonBallRouter = DragonBallRouter()
+        dragonBallRouter.goToCharactersDetail(mainView: self,characterView: view2)
     }
     
     lazy var tableHome: UITableView = {
@@ -92,7 +94,7 @@ class DragonBallView: UIViewController {
     
     lazy var viewContainer: UIView = {
         let container = UIView()
-        container.backgroundColor = .white
+        container.backgroundColor = .gray
         return container
     }()
     
@@ -115,7 +117,7 @@ class DragonBallView: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         self.title = "Dragon Ball Z"
-        view.backgroundColor = .cyan
+        view.backgroundColor = .blue
         view.addSubview(viewContainer)
         viewContainer.addSubview(scrollHome)
         viewContainer.addSubview(bannerView)
@@ -135,6 +137,7 @@ class DragonBallView: UIViewController {
         setupBannerView()
         tableHome.tableHeaderView = headerView
         presenter?.bringData()
+        setupNavigationBar()
     }
     
     func setupBannerView() {
@@ -152,9 +155,9 @@ class DragonBallView: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            viewContainer.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            viewContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             viewContainer.widthAnchor.constraint(equalTo: view.widthAnchor),
-            viewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             viewContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             bannerView.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: -50),
@@ -199,6 +202,38 @@ class DragonBallView: UIViewController {
         ])
     }
     
+    func setupNavigationBar() {
+        self.navigationController?.navigationBar.barTintColor = .red
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.backgroundColor = .red
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        navigationController?.isToolbarHidden = false
+        let toolbarItem = [
+            UIBarButtonItem(
+            title: "Noticias",
+            style: .plain,
+            target: self,
+            action: nil
+        ), UIBarButtonItem(
+            title: "Tienda",
+            style: .plain,
+            target: self,
+            action: nil
+        ), UIBarButtonItem(
+            title: "Adicional",
+            style: .plain,
+            target: self,
+            action: nil
+        ), UIBarButtonItem(
+            title: "Contacto",
+            style: .plain,
+            target: self,
+            action: nil
+        )]
+        toolbarItems = toolbarItem
+
+    }
 }
 
 extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
@@ -215,6 +250,12 @@ extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let url = presenter?.modelDragon[indexPath.row].image else {
+            return
+        }
+        principalImage.kf.setImage(with: URL(string: url))
+    }
 }
 
 extension DragonBallView: DragonBallUI {
