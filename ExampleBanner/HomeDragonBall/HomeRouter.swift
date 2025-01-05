@@ -5,12 +5,11 @@
 //  Created by Christian Morante on 18/02/24.
 //
 
-import Foundation
 import UIKit
 
 class DragonBallRouter {
     
-    func goToCharactersDetail(mainView: UIViewController, characterView: UIViewController) {
+    func goToCharactersDetail(mainView: UIViewController, characterView: UIViewController, dragonBallModel: Item) {
         mainView.navigationController?.pushViewController(characterView, animated: true)
     }
     

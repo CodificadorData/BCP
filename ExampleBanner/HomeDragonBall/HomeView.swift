@@ -13,11 +13,12 @@ class DragonBallView: UIViewController {
     
     var presenter: DragonBallPresenter?
     let cellIdentifi = "cell"
-
+    var personaje: Item?
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         let view2 = CharactersView()
         let dragonBallRouter = DragonBallRouter()
-        dragonBallRouter.goToCharactersDetail(mainView: self,characterView: view2)
+        dragonBallRouter.goToCharactersDetail(mainView: self,characterView: view2, dragonBallModel: personaje!)
     }
     
     lazy var tableHome: UITableView = {
@@ -120,7 +121,7 @@ class DragonBallView: UIViewController {
         view.backgroundColor = .blue
         view.addSubview(viewContainer)
         viewContainer.addSubview(scrollHome)
-        viewContainer.addSubview(bannerView)
+        scrollHome.addSubview(bannerView)
         scrollHome.addSubview(tableHome)
         headerView.addSubview(labelHeader)
         
@@ -160,8 +161,13 @@ class DragonBallView: UIViewController {
             viewContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             viewContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            bannerView.bottomAnchor.constraint(equalTo: viewContainer.bottomAnchor, constant: -50),
-            bannerView.centerXAnchor.constraint(equalTo: viewContainer.centerXAnchor),
+            scrollHome.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollHome.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollHome.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scrollHome.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            bannerView.bottomAnchor.constraint(equalTo: tableHome.bottomAnchor, constant: 150),
+            bannerView.centerXAnchor.constraint(equalTo: scrollHome.centerXAnchor),
             bannerView.widthAnchor.constraint(equalToConstant: 327),
             bannerView.heightAnchor.constraint(equalToConstant: 104),
             
@@ -181,24 +187,19 @@ class DragonBallView: UIViewController {
             bannerImage.heightAnchor.constraint(equalToConstant: 80),
             bannerImage.widthAnchor.constraint(equalToConstant: 30),
             
-            scrollHome.topAnchor.constraint(equalTo: viewContainer.topAnchor, constant: 50),
-            scrollHome.bottomAnchor.constraint(equalTo: bannerView.topAnchor, constant: -50),
-            scrollHome.widthAnchor.constraint(equalTo: viewContainer.widthAnchor),
-            scrollHome.centerXAnchor.constraint(equalTo: viewContainer.centerXAnchor),
-            
-            
             tableHome.topAnchor.constraint(equalTo: scrollHome.topAnchor),
             tableHome.leadingAnchor.constraint(equalTo: scrollHome.leadingAnchor),
-            tableHome.heightAnchor.constraint(equalTo: scrollHome.heightAnchor),
+            tableHome.heightAnchor.constraint(equalToConstant: 500),
             tableHome.widthAnchor.constraint(equalToConstant: 200),
             
-            principalImage.centerYAnchor.constraint(equalTo: scrollHome.centerYAnchor),
-            principalImage.rightAnchor.constraint(equalTo: viewContainer.rightAnchor, constant: -10),
+            principalImage.centerYAnchor.constraint(equalTo: tableHome.centerYAnchor),
+            principalImage.rightAnchor.constraint(equalTo: viewContainer.rightAnchor, constant: -20),
             principalImage.heightAnchor.constraint(equalToConstant: 400),
             principalImage.widthAnchor.constraint(equalToConstant: 150),
             
             labelHeader.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
             labelHeader.centerXAnchor.constraint(equalTo: headerView.centerXAnchor)
+            
         ])
     }
     
@@ -232,7 +233,6 @@ class DragonBallView: UIViewController {
             action: nil
         )]
         toolbarItems = toolbarItem
-
     }
 }
 
@@ -245,8 +245,15 @@ extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifi, for: indexPath)
         cell.backgroundColor = .brown
-        let personaje = presenter?.modelDragon[indexPath.row].name
-        cell.textLabel?.text = personaje
+        personaje = (presenter?.modelDragon[indexPath.row])!
+        let personajeNombre = presenter?.modelDragon[indexPath.row].name
+        cell.textLabel?.text = personajeNombre
+        
+        cell.textLabel?.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cell.textLabel!.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor),
+            cell.textLabel!.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor)
+        ])
         return cell
     }
     
