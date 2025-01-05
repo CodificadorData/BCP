@@ -16,9 +16,8 @@ class DragonBallView: UIViewController {
     var personaje: Item?
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        let view2 = CharactersView()
         let dragonBallRouter = DragonBallRouter()
-        dragonBallRouter.goToCharactersDetail(mainView: self,characterView: view2, dragonBallModel: personaje!)
+        dragonBallRouter.goToCharactersDetail(mainView: self, dragonBallModel: personaje!)
     }
     
     lazy var tableHome: UITableView = {
@@ -63,7 +62,6 @@ class DragonBallView: UIViewController {
     
     lazy var bannerImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "goku")
         image.contentMode = .scaleToFill
         return image
     }()
@@ -139,6 +137,12 @@ class DragonBallView: UIViewController {
         tableHome.tableHeaderView = headerView
         presenter?.bringData()
         setupNavigationBar()
+        //principalImage.kf.setImage(with: URL(string: (presenter?.modelDragon[1].image)!)!)
+        //principalImage.kf.setImage(with: URL(string: ("https://dragonball-api.com/characters/bulma.webp")))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isToolbarHidden = false
     }
     
     func setupBannerView() {
@@ -209,7 +213,6 @@ class DragonBallView: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = .red
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
-        navigationController?.isToolbarHidden = false
         let toolbarItem = [
             UIBarButtonItem(
             title: "Noticias",
@@ -245,7 +248,6 @@ extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifi, for: indexPath)
         cell.backgroundColor = .brown
-        personaje = (presenter?.modelDragon[indexPath.row])!
         let personajeNombre = presenter?.modelDragon[indexPath.row].name
         cell.textLabel?.text = personajeNombre
         
@@ -262,6 +264,7 @@ extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
             return
         }
         principalImage.kf.setImage(with: URL(string: url))
+        personaje = (presenter?.modelDragon[indexPath.row])!
     }
 }
 
