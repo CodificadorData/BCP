@@ -123,8 +123,6 @@ class DragonBallView: UIViewController {
         viewContainer.addSubview(scrollHome)
         scrollHome.addSubview(bannerView)
         scrollHome.addSubview(tableHome)
-        headerView.addSubview(labelHeader)
-        
         scrollHome.addSubview(principalImage)
         bannerView.addSubview(bannerButton)
         bannerView.addSubview(bannerTittle)
@@ -134,11 +132,24 @@ class DragonBallView: UIViewController {
         tableHome.delegate = self
         tableHome.dataSource = self
         tableHome.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifi)
-        setupBannerView()
         tableHome.tableHeaderView = headerView
+        headerView.addSubview(labelHeader)
+
+        setupBannerView()
         presenter?.bringData()
         setupNavigationBar()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        
+////         Seleccionar automáticamente la primera celda
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        tableHome.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+//        
+////         Opcional: Llamar manualmente el método didSelectRowAt
+//        tableHome.delegate?.tableView?(tableHome, didSelectRowAt: indexPath)
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isToolbarHidden = false
@@ -279,6 +290,11 @@ extension DragonBallView: DragonBallUI {
             self.tableHome.reloadData()
             self.principalImage.kf.setImage(with: URL(string: imageFirst))
             self.bannerImage.kf.setImage(with: URL(string: imageFirst))
+//            let indexPath = IndexPath(row: 0, section: 0)
+//            self.tableHome.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableHome.delegate?.tableView?(self.tableHome, didSelectRowAt: indexPath)
+
         }
     }
     

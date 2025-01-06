@@ -8,25 +8,16 @@ import UIKit
 
 class MainRouter {
     
-    var view: DragonBallView
-    var interactor: DragonBallInteractor
-    var presenter: DragonBallPresenter
+    var loginView: LoginViewController
     
     init() {
-        self.view = DragonBallView()
-        self.interactor = DragonBallInteractor()
-        self.presenter = DragonBallPresenter(dragonBallInteractor: interactor)
-        presenter.ui = view
-        view.presenter = presenter
+        self.loginView = LoginViewController()
     }
     
     func startDrgonBall(windows: UIWindow?){
-        let navigationController = UINavigationController(rootViewController: view)
+        let navigationController = UINavigationController(rootViewController: loginView)
         windows?.rootViewController = navigationController
         windows?.makeKeyAndVisible()
     }
     
-    func goToCharactersDetail(characterView: UIViewController) {
-        view.navigationController?.pushViewController(characterView, animated: true)
-    }
 }
