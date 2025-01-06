@@ -69,14 +69,14 @@ class CharactersView: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
-        scroll.backgroundColor = .gray
+        scroll.backgroundColor = UIColor(red: 255/255.0, green: 140/255.0, blue: 0/255.0, alpha: 1)
         scroll.addSubview(contentView)
         return scroll
     }()
     
     lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor(red: 255/255.0, green: 140/255.0, blue: 0/255.0, alpha: 1)
         view.addSubview(characterImageView)
         view.addSubview(additionalDataOneLabel)
         view.addSubview(additionalDataTwoLabel)
@@ -90,7 +90,7 @@ class CharactersView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .purple
+        view.backgroundColor = UIColor(red: 255/255.0, green: 140/255.0, blue: 0/255.0, alpha: 1)
         print("Datos: \(dragonBallModel)")
         view.addSubview(scrollView)
         setupConstraints()

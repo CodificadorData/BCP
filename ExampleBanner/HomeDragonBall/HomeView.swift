@@ -23,7 +23,9 @@ class DragonBallView: UIViewController {
     lazy var tableHome: UITableView = {
         let table = UITableView()
         table.backgroundColor = .darkGray
-        table.rowHeight = 80.0
+        table.layer.cornerRadius = 15
+        table.clipsToBounds = true
+        table.rowHeight = 50.0
         return table
     }()
     
@@ -49,7 +51,7 @@ class DragonBallView: UIViewController {
     
     lazy var scrollHome: UIScrollView = {
         let scroll = UIScrollView()
-        scroll.backgroundColor = .purple
+        scroll.backgroundColor = UIColor(red: 255/255.0, green: 140/255.0, blue: 0/255.0, alpha: 1)
         scroll.contentSize = CGSize(width: viewContainer.frame.width, height: 1000)
         return scroll
     }()
@@ -95,7 +97,7 @@ class DragonBallView: UIViewController {
     
     lazy var viewContainer: UIView = {
         let container = UIView()
-        container.backgroundColor = .gray
+        container.backgroundColor = UIColor(red: 255/255.0, green: 140/255.0, blue: 0/255.0, alpha: 1)
         return container
     }()
     
@@ -118,7 +120,7 @@ class DragonBallView: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         self.title = "Dragon Ball Z"
-        view.backgroundColor = .blue
+        view.backgroundColor = UIColor(red: 210/255.0, green: 105/255.0, blue: 30/255.0, alpha: 1)
         view.addSubview(viewContainer)
         viewContainer.addSubview(scrollHome)
         scrollHome.addSubview(bannerView)
@@ -139,17 +141,6 @@ class DragonBallView: UIViewController {
         presenter?.bringData()
         setupNavigationBar()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        
-////         Seleccionar automáticamente la primera celda
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        tableHome.selectRow(at: indexPath, animated: true, scrollPosition: .none)
-//        
-////         Opcional: Llamar manualmente el método didSelectRowAt
-//        tableHome.delegate?.tableView?(tableHome, didSelectRowAt: indexPath)
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isToolbarHidden = false
@@ -204,7 +195,8 @@ class DragonBallView: UIViewController {
             bannerImage.heightAnchor.constraint(equalToConstant: 80),
             bannerImage.widthAnchor.constraint(equalToConstant: 30),
             
-            tableHome.topAnchor.constraint(equalTo: scrollHome.topAnchor),
+            tableHome.topAnchor.constraint(equalTo: scrollHome.topAnchor, constant: 20),
+            tableHome.leftAnchor.constraint(equalTo: scrollHome.leftAnchor, constant: 20),
             tableHome.leadingAnchor.constraint(equalTo: scrollHome.leadingAnchor),
             tableHome.heightAnchor.constraint(equalToConstant: 500),
             tableHome.widthAnchor.constraint(equalToConstant: 200),
@@ -221,13 +213,19 @@ class DragonBallView: UIViewController {
     }
     
     func setupNavigationBar() {
-        self.navigationController?.navigationBar.barTintColor = .red
+        self.navigationController?.navigationBar.barTintColor = .clear
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.backgroundColor = .red
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
+        self.navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(white: 1, alpha: 1)]
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 210/255.0, green: 105/255.0, blue: 30/255.0, alpha: 1)
+
         let toolbarItem = [
             UIBarButtonItem(
+            title: "Inicio",
+            style: .done,
+            target: self,
+            action: nil
+        ), UIBarButtonItem(
             title: "Noticias",
             style: .plain,
             target: self,
@@ -290,11 +288,8 @@ extension DragonBallView: DragonBallUI {
             self.tableHome.reloadData()
             self.principalImage.kf.setImage(with: URL(string: imageFirst))
             self.bannerImage.kf.setImage(with: URL(string: imageFirst))
-//            let indexPath = IndexPath(row: 0, section: 0)
-//            self.tableHome.selectRow(at: indexPath, animated: true, scrollPosition: .none)
             let indexPath = IndexPath(row: 0, section: 0)
             self.tableHome.delegate?.tableView?(self.tableHome, didSelectRowAt: indexPath)
-
         }
     }
     

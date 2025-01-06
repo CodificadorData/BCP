@@ -11,7 +11,8 @@ class LoginViewController: UIViewController {
     let loginRouter = LoginRouter ()
     
     lazy var loginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
+        button.backgroundColor = UIColor(red: 255/255.0, green: 215/255.0, blue: 0/255.0, alpha: 1)
         button.setTitle("Login", for: .normal)
         button.addTarget(self, action: #selector(login), for: .touchUpInside)
         return button
@@ -27,7 +28,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = UIColor(red: 210/255.0, green: 105/255.0, blue: 30/255.0, alpha: 1)
         view.addSubview(loginButton)
         setupConstraints()
     }
