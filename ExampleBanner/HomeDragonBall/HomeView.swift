@@ -75,17 +75,19 @@ class DragonBallView: UIViewController {
     
     lazy var bannerDescription: UILabel = {
         let description = UILabel()
-        description.text = "S/ 20.200 (TCEA de 10.2%)"
+        description.text = "Todos los personajes cuentan con caracteristicas distintas y estas las podrás averiguar en la siguiente pantalla:"
         description.textAlignment = .center
         description.textColor = .black
+        description.numberOfLines = 0
         description.font = UIFont.systemFont(ofSize: 12)
         return description
     }()
     
     lazy var bannerTittle: UILabel = {
         let tittle = UILabel()
-        tittle.text = "Solicita tu Préstamo \npre aprobado de:"
+        tittle.text = "Info de tu Personaje"
         tittle.textAlignment = .center
+        tittle.numberOfLines = 0
         tittle.textColor = .black
         tittle.font = UIFont.systemFont(ofSize: 16)
         return tittle
@@ -132,13 +134,10 @@ class DragonBallView: UIViewController {
         tableHome.delegate = self
         tableHome.dataSource = self
         tableHome.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifi)
-        tableHome.reloadData()
         setupBannerView()
         tableHome.tableHeaderView = headerView
         presenter?.bringData()
         setupNavigationBar()
-        //principalImage.kf.setImage(with: URL(string: (presenter?.modelDragon[1].image)!)!)
-        //principalImage.kf.setImage(with: URL(string: ("https://dragonball-api.com/characters/bulma.webp")))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -181,10 +180,13 @@ class DragonBallView: UIViewController {
             bannerButton.rightAnchor.constraint(equalTo: bannerView.rightAnchor, constant: -10),
             
             bannerTittle.topAnchor.constraint(equalTo: bannerView.topAnchor, constant: 10),
+            bannerTittle.widthAnchor.constraint(equalTo: bannerView.widthAnchor, multiplier: 0.9),
             bannerTittle.centerXAnchor.constraint(equalTo: bannerView.centerXAnchor),
             
-            bannerDescription.topAnchor.constraint(equalTo: bannerTittle.topAnchor, constant: 70),
+            bannerDescription.topAnchor.constraint(equalTo: bannerTittle.topAnchor, constant: 25),
+            bannerDescription.rightAnchor.constraint(equalTo: bannerImage.leftAnchor, constant: -5),
             bannerDescription.leftAnchor.constraint(equalTo: bannerView.leftAnchor, constant: 20),
+            bannerDescription.widthAnchor.constraint(equalToConstant: 100),
             
             bannerImage.topAnchor.constraint(equalTo: bannerView.topAnchor, constant: 20),
             bannerImage.rightAnchor.constraint(equalTo: bannerView.rightAnchor, constant: -50),
@@ -263,6 +265,7 @@ extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
         guard let url = presenter?.modelDragon[indexPath.row].image else {
             return
         }
+        bannerImage.kf.setImage(with: URL(string: url))
         principalImage.kf.setImage(with: URL(string: url))
         personaje = (presenter?.modelDragon[indexPath.row])!
     }
@@ -272,7 +275,10 @@ extension DragonBallView: DragonBallUI {
     func updateDragonBall(dragonBallList: [Item]) {
         print("updateDragonBall \(dragonBallList)")
         DispatchQueue.main.async {
+            let imageFirst = self.presenter!.modelDragon.first!.image
             self.tableHome.reloadData()
+            self.principalImage.kf.setImage(with: URL(string: imageFirst))
+            self.bannerImage.kf.setImage(with: URL(string: imageFirst))
         }
     }
     

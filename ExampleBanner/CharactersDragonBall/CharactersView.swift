@@ -53,10 +53,9 @@ class CharactersView: UIViewController {
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 12, weight: .bold)
+        label.textAlignment = .justified
         label.numberOfLines = 0
-        //label.lineBreakMode = .byWordWrapping // Ajustar las líneas según las palabras
         label.text = dragonBallModel.description
         return label
     }()
@@ -127,12 +126,10 @@ class CharactersView: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-
             // Establecer el ancho del contenedor igual al ancho de la vista principal
             contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
-
             // Altura del contenedor (puedes cambiarla según tus elementos)
-            contentView.heightAnchor.constraint(equalToConstant: 1500),
+            contentView.heightAnchor.constraint(equalToConstant: 1300),
 
             
             titleNameLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
@@ -149,10 +146,10 @@ class CharactersView: UIViewController {
             
             descriptionLabel.topAnchor.constraint(equalTo: additionalDataThreeLabel.bottomAnchor, constant: 20),
             descriptionLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             
             characterImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
-            characterImageView.widthAnchor.constraint(equalToConstant: 200),
+            characterImageView.heightAnchor.constraint(equalToConstant: 500),
             characterImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         ])
     }
