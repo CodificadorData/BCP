@@ -7,10 +7,10 @@
 
 import UIKit
 
-class DragonBallRouter {
+class HomeRouter {
     
-    func goToCharactersDetail(mainView: UIViewController, dragonBallModel: Item) {
-        let charactersView = CharactersView(dragonBallModel: dragonBallModel)
+    func goToCharacterDetail(mainView: UIViewController, dragonBallModel: Item) {
+        let charactersView = CharacterViewController(dragonBallModel: dragonBallModel)
         mainView.navigationController?.pushViewController(charactersView, animated: true)
     }
     

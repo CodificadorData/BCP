@@ -7,14 +7,14 @@
 
 import UIKit
 
-class DragonBallPresenter {
+class HomePresenter {
     
-    private let dragonBallInteractor: DragonBallInteractor
+    private let dragonBallInteractor: HomeInteractor
     var ui: DragonBallUI?
     var modelDragon: [Item] = []
     
-    init(dragonBallInteractor: DragonBallInteractor) {
-        self.dragonBallInteractor = dragonBallInteractor
+    init(homeInteractor: HomeInteractor) {
+        self.dragonBallInteractor = HomeInteractor()
     }
     
     func bringData(){

@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 import Kingfisher
 
-class DragonBallView: UIViewController {
+class HomeViewController: UIViewController {
     
-    var presenter: DragonBallPresenter?
+    var presenter: HomePresenter?
     let cellIdentifi = "cell"
     var personaje: Item?
-    
+    let router = HomeRouter()
+
     @IBAction func buttonPressed(_ sender: UIButton) {
-        let dragonBallRouter = DragonBallRouter()
-        dragonBallRouter.goToCharactersDetail(mainView: self, dragonBallModel: personaje!)
+        router.goToCharacterDetail(mainView: self, dragonBallModel: personaje!)
     }
     
     lazy var tableHome: UITableView = {
@@ -250,7 +250,7 @@ class DragonBallView: UIViewController {
     }
 }
 
-extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (presenter?.modelDragon.count)!
@@ -280,7 +280,7 @@ extension DragonBallView: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension DragonBallView: DragonBallUI {
+extension HomeViewController: DragonBallUI {
     func updateDragonBall(dragonBallList: [Item]) {
         print("updateDragonBall \(dragonBallList)")
         DispatchQueue.main.async {

@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class CharactersView: UIViewController {
+class CharacterViewController: UIViewController {
     
     lazy var titleNameLabel: UILabel = {
         let label = UILabel()

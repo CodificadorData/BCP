@@ -9,15 +9,15 @@ import UIKit
 
 class LoginRouter {
     
-    private var viewHome: DragonBallView
-    private var interactorHome: DragonBallInteractor
-    private var presenterHome: DragonBallPresenter
+    private var viewHome: HomeViewController
+    private var interactorHome: HomeInteractor
+    private var presenterHome: HomePresenter
     private var viewRegisterHome: RegisterViewController
     
     init() {
-        self.viewHome = DragonBallView()
-        self.interactorHome = DragonBallInteractor()
-        self.presenterHome = DragonBallPresenter(dragonBallInteractor: interactorHome)
+        self.viewHome = HomeViewController()
+        self.interactorHome = HomeInteractor()
+        self.presenterHome = HomePresenter(homeInteractor: interactorHome)
         self.viewRegisterHome = RegisterViewController()
         presenterHome.ui = viewHome
         viewHome.presenter  = presenterHome

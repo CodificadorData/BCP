@@ -9,7 +9,7 @@ import Kingfisher
 
 class LoginViewController: UIViewController {
     
-    let loginRouter = LoginRouter()
+    let router = LoginRouter()
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -100,11 +100,11 @@ class LoginViewController: UIViewController {
     }
     
     @objc func login() {
-        loginRouter.goToHome(mainView: self)
+        router.goToHome(mainView: self)
     }
     
     @objc func register() {
-        loginRouter.goToRegister(mainView: self)
+        router.goToRegister(mainView: self)
     }
     
     func setupConstraints() {

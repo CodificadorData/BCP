@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import Kingfisher
 
-class DragonBallInteractor {
+class HomeInteractor {
     
     func requestDragonBall(dataJson: @escaping (_ dataDragon: DragonBallEntity) -> Void) {
         

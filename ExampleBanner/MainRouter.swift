@@ -14,7 +14,7 @@ class MainRouter {
         self.loginView = LoginViewController()
     }
     
-    func startDrgonBall(windows: UIWindow?){
+    func start(windows: UIWindow?){
         let navigationController = UINavigationController(rootViewController: loginView)
         windows?.rootViewController = navigationController
         windows?.makeKeyAndVisible()
