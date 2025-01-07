@@ -9,21 +9,25 @@ import UIKit
 
 class LoginRouter {
     
-    private var view: DragonBallView
-    private var interactor: DragonBallInteractor
-    private var presenter: DragonBallPresenter
+    private var viewHome: DragonBallView
+    private var interactorHome: DragonBallInteractor
+    private var presenterHome: DragonBallPresenter
+    private var viewRegisterHome: RegisterViewController
     
     init() {
-        self.view = DragonBallView()
-        self.interactor = DragonBallInteractor()
-        self.presenter = DragonBallPresenter(dragonBallInteractor: interactor)
-        presenter.ui = view
-        view.presenter = presenter
+        self.viewHome = DragonBallView()
+        self.interactorHome = DragonBallInteractor()
+        self.presenterHome = DragonBallPresenter(dragonBallInteractor: interactorHome)
+        self.viewRegisterHome = RegisterViewController()
+        presenterHome.ui = viewHome
+        viewHome.presenter  = presenterHome
     }
     
-    func startDrgonBall(mainView: UIViewController){
-        mainView.navigationController?.pushViewController(view, animated: true)
+    func goToHome(mainView: UIViewController) {
+        mainView.navigationController?.pushViewController(viewHome, animated: true)
     }
     
-
+    func goToRegister(mainView: UIViewController) {
+        mainView.navigationController?.pushViewController(viewRegisterHome, animated: true)
+    }
 }
