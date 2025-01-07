@@ -14,4 +14,5 @@ target 'ExampleBanner' do
   pod 'FirebaseFirestore'
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'GoogleSignIn'
 end

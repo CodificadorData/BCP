@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-ExampleBanner/Pods-ExampleBanner-resources.sh
+${PODS_ROOT}/GoogleAuthUtilities/Frameworks/frameworks/GoogleAuthUtilities.framework/Resources/GTMOAuth2ViewTouch.xib
+${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle
+${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities_Privacy.bundle
