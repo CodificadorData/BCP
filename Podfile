@@ -1,6 +1,6 @@
  platform :ios, '15.0'
 
-target 'ExampleBanner' do
+target 'AppPapple' do
   use_frameworks!
   # Add the Firebase pod for Google Analytics
   pod 'FirebaseAnalytics'

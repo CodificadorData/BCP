@@ -1,0 +1,6 @@
+framework module Pods_AppPapple {
+  umbrella header "Pods-AppPapple-umbrella.h"
+
+  export *
+  module * { export * }
+}
