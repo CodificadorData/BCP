@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     
     lazy var loginImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.kf.setImage(with: URL(string: "https://cdn.atomix.vg/wp-content/uploads/2018/05/dbz-logo.jpg"))
+        imageView.image = UIImage(named: "loginImage")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
